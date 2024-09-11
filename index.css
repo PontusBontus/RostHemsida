@@ -40,8 +40,3 @@ footer {
         margin: auto;
     }
 }
-
-img { height: 10%;
-    align-items: center;
-    background-image: url("banner.png");
-}
