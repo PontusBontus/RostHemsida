@@ -10,12 +10,7 @@
     <div class ="container">
         <p>Skriv ditt namn.</p>
         <input type="text" placeholder="Namn" id="qrText">
-
-        <p>Välj Parti</p>
-
-        <input type="text" placeholder="Parti" id="qrParti">
-
-        <div id="imageBox">
+        <div id="imgBox">
             <img src="" id="qrImage">
         </div>
         <button onclick="generateQR()">Generera QR kod</button>
@@ -26,12 +21,11 @@
 let imgBox = document.getElementById("imgBox")
 let qrImage = document.getElementById("qrImage")
 let qrText = document.getElementById("qrText")
-let qrParti = document.getElementById("qrParti")
 
 
 
 function generateQR(){
-  qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value * qrParti.value;
+  qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
   imgBox.classList.add("show-img");
 }
 </script>

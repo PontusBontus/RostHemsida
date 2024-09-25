@@ -3,9 +3,6 @@
     padding: 0;
     font-family: sans-serif;
     box-sizing: border-box;
-
-
-
 }
 
 body{
@@ -52,14 +49,14 @@ border-radius: 5px;
     cursor: pointer;
     margin: 20px 0;
     font-weight: 500;
-
 }
+
 #imgBox{
     width: 200px;
     border-radius: 5px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 10s;
+    transition: max-height 1s;
 }
 #imgBox img{
     width: 100%;
