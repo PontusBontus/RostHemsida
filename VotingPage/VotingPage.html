@@ -5,35 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encrypt to QR Code</title>
     <link rel="stylesheet" href="VotingPage.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        /* Styling for suggestion box */
+        #suggestion-box {
+            border: 1px solid #ccc;
+            max-width: 300px;
+            background-color: #fff;
+            position: absolute;
+            z-index: 100;
+            display: none;
+        }
+
+        #suggestion-box div {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        #suggestion-box div:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
-    <div class ="container">
+    <div class="container">
         <p>Skriv ditt namn.</p>
         <input type="text" placeholder="Namn" id="qrText">
+        
+        <p>Skriv ditt parti.</p>
+
+        <input type="text" placeholder="Lösenord" id="password" oninput="showSuggestions()">
+        
+
+        <div id="suggestion-box"></div>
+        
         <div id="imgBox">
             <img src="" id="qrImage">
         </div>
         <button onclick="generateQR()">Generera QR kod</button>
+        
     </div>
 
 <script>
+let imgBox = document.getElementById("imgBox");
+let qrImage = document.getElementById("qrImage");
+let qrText = document.getElementById("qrText");
+let password = document.getElementById("password");
+let suggestionBox = document.getElementById("suggestion-box");
 
-let imgBox = document.getElementById("imgBox")
-let qrImage = document.getElementById("qrImage")
-let qrText = document.getElementById("qrText")
+
+let suggestions = [
+    "Alternativ För Sverige",
+    "Sverige Demokraterna",
+    "Nordfront",
+];
+
+function generateQR() {
+    let name = qrText.value;
+    let pass = password.value;
+
+    if (name && pass) {
+
+        let encryptionKey = "pizzeria gurka";
+        
+ 
+        let combinedText = `Name: ${name}, Password: ${pass}`;
+        
+
+        let encryptedText = CryptoJS.AES.encrypt(combinedText, encryptionKey).toString();
+        
+
+        qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(encryptedText);
+        imgBox.classList.add("show-img");
+    } else {
+        alert("Fyll i både namn och parti.");
+    }
+}
 
 
+function showSuggestions() {
+    let input = password.value.toLowerCase();
+    suggestionBox.innerHTML = ''; 
 
-function generateQR(){
-  qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
-  imgBox.classList.add("show-img");
+    if (input.length > 0) {
+        let filteredSuggestions = suggestions.filter(suggestion => 
+            suggestion.toLowerCase().includes(input)
+        );
+
+
+        if (filteredSuggestions.length > 0) {
+            suggestionBox.style.display = 'block';
+            filteredSuggestions.forEach(suggestion => {
+                let suggestionDiv = document.createElement('div');
+                suggestionDiv.textContent = suggestion;
+                suggestionDiv.onclick = () => {
+                    password.value = suggestion; 
+                    suggestionBox.style.display = 'none'; 
+                };
+                suggestionBox.appendChild(suggestionDiv);
+            });
+        } else {
+            suggestionBox.style.display = 'none'; 
+        }
+    } else {
+        suggestionBox.style.display = 'none'; 
+    }
 }
 </script>
-
-
-
-
 </body>
 </html>
-
-
