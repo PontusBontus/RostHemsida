@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner and Decryptor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        #reader {
+            width: 500px;
+            margin: 0 auto;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div id="reader"></div>
+    <div id="result"></div>
+
+    <script>
+        const html5QrCode = new Html5Qrcode("reader");
+        const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+            console.log(`Code matched = ${decodedText}`, decodedResult);
+            html5QrCode.stop().then((ignore) => {
+                decryptQRCode(decodedText);
+            }).catch((err) => {
+                console.log(err);
+            });
+        };
+        const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+        html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+
+        function decryptQRCode(encryptedText) {
+            const encryptionKey = "arturmorgandräng";
+            try {
+                const decryptedBytes = CryptoJS.AES.decrypt(encryptedText, encryptionKey);
+                const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
+                document.getElementById('result').innerHTML = `Decrypted message: ${decryptedText}`;
+            } catch (error) {
+                console.error('Decryption failed:', error);
+                document.getElementById('result').innerHTML = 'Failed to decrypt the QR code.';
+            }
+        }
+    </script>
+</body>
+</html>
