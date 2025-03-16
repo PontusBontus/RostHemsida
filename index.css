@@ -1,44 +1,56 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Inter, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1467C3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FEE715;
 }
 
-header {
-    background-color: #F7DD00;
-    color: white;
-    padding: 15px;
+/* Innehållscontainer (utan bakgrund och skugga) */
+.content {
     text-align: center;
-    margin-top: 50%;
-    text-shadow: 0px 0px 5px rgb(51, 51, 51, 0.9);
-}
-
-
-main {
-    padding: 15px;
-}
-
-/* Mobile-first responsive design */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
+    max-width: 400px;
     width: 100%;
-    bottom: 0;
+    padding: 0 20px; /* Utrymme mellan innehåll och skärmens kanter */
+    margin-top: -50px; /* Justering för lodrät centrering */
 }
 
-/* Media Query for Tablets and Desktops */
-@media (min-width: 768px) {
-    nav ul li {
-        display: inline-block;
-        padding: 14px 40px;
-    }
+/* Introduktionstext */
+.intro-text {
+    font-size: 28px; /* Storlek för introduktionstexten */
+    margin-bottom: 30px;
+    color: #101820;
+    font-weight: bold; /* Fetstil för att göra texten mer framträdande */
+}
 
-    main {
-        max-width: 960px;
-        margin: auto;
-    }
+/* Stil för knappar */
+.button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    font-size: 18px;
+    color: #101820;
+    background-color: #fff;
+    border: 2px solid #000; /* Ram runt knappen */
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Mjuk övergång för hover-effekt */
+}
+
+/* Ikoner i knappar (flyttas till höger) */
+.button i {
+    margin-left: 10px; /* Mellanrum mellan text och ikon */
+}
+
+/* Hover-effekt för knappar */
+.button:hover {
+    background-color: #000;
+    color: #fff;
+    transform: scale(1.05); /* Förstorar knappen lite vid hover */
 }
