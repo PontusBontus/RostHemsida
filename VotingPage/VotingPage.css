@@ -1,72 +1,108 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Inter, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
     box-sizing: border-box;
 }
 
-body{
-    background: #262a2f;
-
-
+body {
+    background: #FEE715;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
 }
-.container {
 
-    width: 400px;
+.container {
+    width: 100%;
+    max-width: 400px;
     padding: 25px 35px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background: #fff;
     border-radius: 10px;
-}
-.container p{
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 8px;
-
-}
-.container input{
-width: 100%;
-height: 50px;
-border: 1px solid #494eea;
-outline: 0;
-padding: 10px;
-margin: 10px 0 20px;
-border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.container button{
+.container p {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #101820;
+}
+
+.container input {
     width: 100%;
     height: 50px;
-    background: #494eea;
-    color: #fff;
-    border: 0;
-    outline: 0;
+    border: 2px solid #101820;
+    outline: none;
+    padding: 10px;
+    margin: 10px 0 20px;
     border-radius: 5px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    margin: 20px 0;
-    font-weight: 500;
+    font-size: 16px;
+    background-color: #fff;
+    color: #101820;
 }
 
-#imgBox{
+.container button {
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    color: #101820;
+    border: 2px solid #101820;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.container button:hover {
+    background-color: #101820;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+#imgBox {
     width: 200px;
     border-radius: 5px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 1s;
+    margin: 0 auto;
 }
-#imgBox img{
+
+#imgBox img {
     width: 100%;
     padding: 10px;
 }
-#imgBox.show-img{
+
+#imgBox.show-img {
     max-height: 300px;
     margin: 10px auto;
     border: 1px solid #d1d1d1;
 }
 
+#suggestion-box {
+    border: 2px solid #101820;
+    max-width: 100%;
+    background-color: #fff;
+    position: absolute;
+    z-index: 100;
+    display: none;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#suggestion-box div {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #101820;
+}
+
+#suggestion-box div:hover {
+    background-color: #f0f0f0;
+}
 
 

@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #FEE715;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+}
+
+#result {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px solid #101820;
+    background-color: #fff;
+    color: #101820;
+    border-radius: 10px;
+    max-width: 500px;
+    word-wrap: break-word;
+}   
